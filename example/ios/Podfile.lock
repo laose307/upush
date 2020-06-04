@@ -1,0 +1,34 @@
+PODS:
+  - Flutter (1.0.0)
+  - UMCCommon (2.1.4)
+  - UMCPush (3.2.4):
+    - UMCCommon
+  - upush (0.0.1):
+    - Flutter
+    - UMCCommon (= 2.1.4)
+    - UMCPush (= 3.2.4)
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - upush (from `.symlinks/plugins/upush/ios`)
+
+SPEC REPOS:
+  trunk:
+    - UMCCommon
+    - UMCPush
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  upush:
+    :path: ".symlinks/plugins/upush/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  UMCCommon: b0703b0053323f598e01670ea702b8eb1e66e611
+  UMCPush: 1edd856027dcf905333effb4040ace5d236a7316
+  upush: d4f3676f2d27a5734b0d9fe9d51155a5eec65d4a
+
+PODFILE CHECKSUM: f32fb4e7c14f8b3ca19a369d7be425dd9241af27
+
+COCOAPODS: 1.8.4

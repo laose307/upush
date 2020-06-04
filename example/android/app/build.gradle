@@ -1,0 +1,103 @@
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader('UTF-8') { reader ->
+        localProperties.load(reader)
+    }
+}
+
+def flutterRoot = localProperties.getProperty('flutter.sdk')
+if (flutterRoot == null) {
+    throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
+}
+
+def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
+if (flutterVersionCode == null) {
+    flutterVersionCode = '1'
+}
+
+def flutterVersionName = localProperties.getProperty('flutter.versionName')
+if (flutterVersionName == null) {
+    flutterVersionName = '1.0'
+}
+
+apply plugin: 'com.android.application'
+apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+def keystorePropertiesFile = rootProject.file("key.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+android {
+    compileSdkVersion 28
+
+    lintOptions {
+        disable 'InvalidPackage'
+    }
+
+    defaultConfig {
+                       
+        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
+        applicationId "com.heytap.pushdemo.ie7826d06108894a0c308c49"
+        minSdkVersion 16
+        targetSdkVersion 28
+        versionCode flutterVersionCode.toInteger()
+        versionName flutterVersionName
+        manifestPlaceholders = [
+                UMENG_APPKEY : "@5e703072167edd53db0001f0",
+                UMENG_MESSAGE_SECRET : "@f7b737a237fd5e3b6dc38c790814d9b9",
+                UMENG_CHANNEL : "umeng",
+                OPPO_APPKEY : "@qXsYpualHBZ6vx1UrYnW6b3X",
+                OPPO_APPSECRET : "@8qcgcr0h6wFMjk0XWLTkGYUu",
+                XIAOMI_APPID : "@2882303761518355854",
+                XIAOMI_APPKEY : "@5571835552854",
+                MEIZU_APPID : "@129342",
+                MEIZU_APPKEY : "@84deecf15e374387812ce0e322cd0c72",
+                HUAWEI_APPID : "@101982679",
+                VIVO_KEY : "",
+                VIVO_APPID : "",
+        ]
+
+        ndk {
+            abiFilters "x86", "armeabi", "armeabi-v7a"
+        }
+    }
+
+    signingConfigs {
+
+        debug {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+
+        release {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            ndk {
+                abiFilters "armeabi-v7a"
+            }
+        }
+        debug {
+            signingConfig signingConfigs.release
+            ndk {
+                abiFilters "armeabi" ,"armeabi-v7a","arm64-v8a"
+            }
+        }
+    }
+}
+
+flutter {
+    source '../..'
+}
