@@ -113,7 +113,7 @@ vivo Push通道
 
 ## 离线下发指定页面
 把 `com.wsl.upush.UPushOffLineNotificationActivity` 填入下图框中
-![avatar](../Image/umeng_push.png)
+![avatar](Image/umeng_push.png)
 
 
 ## iOS: 
