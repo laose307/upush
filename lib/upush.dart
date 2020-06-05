@@ -1,11 +1,8 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:flutter/services.dart';
-
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
 
 
 typedef Future<dynamic> EventHandler(Map<String, dynamic> event);
@@ -30,16 +27,16 @@ class UpushPlugin {
 
 
   //自定义推送消息
-  EventHandler onReceiveCustomMessage = null;
+  EventHandler onReceiveCustomMessage;
 
   //推送消息
-  EventHandler onReceiveNotification = null;
+  EventHandler onReceiveNotification ;
 
   //在线通知栏的点击
-  EventHandler onNotificatiClickHandler = null;
+  EventHandler onNotificatiClickHandler;
 
   //接受离线通知的点击
-  EventHandler onReceiveOffLineNotification = null;
+  EventHandler onReceiveOffLineNotification;
 
   void addEventHandle(
       {EventHandler onNotificatiClickHandler,
@@ -52,13 +49,12 @@ class UpushPlugin {
     this.onReceiveOffLineNotification=onReceiveOffLineNotification;
   }
 
-  /**
-   *ios初始化
-   * appKey：申请的值
-   * channel：通道的名字
-   * debug：默认false(不输出log); 设置为true, 输出可供调试参考的log信息. 发布产品时必须设置为false.
-   *badgeClear：否开启角标清空
-   */
+
+  ///ios初始化
+  // appKey：申请的值
+  // channel：通道的名字
+  //debug：默认false(不输出log); 设置为true, 输出可供调试参考的log信息. 发布产品时必须设置为false.
+  //badgeClear：否开启角标清空
   void setupIOS(String appKey,{String channel="flutter",bool debug=false,bool badgeClear=true}) async {
 
     if (!Platform.isIOS) {
@@ -70,9 +66,7 @@ class UpushPlugin {
 
   }
 
-  /**
-   * 否开启弹出框
-   */
+  /// 否开启弹出框
   void autoAlertIOS(bool autoAlert) async {
 
     if (!Platform.isIOS) {
@@ -98,9 +92,6 @@ class UpushPlugin {
 
   Future<Map<dynamic,dynamic>> addTags(List<String> list) async {
     final Map<dynamic,dynamic> result = await (_channel.invokeMethod("addTags", list)) ;
-
-    debugPrint("************添加标签 addTags****${result}");
-
     return result;
   }
 
@@ -140,9 +131,7 @@ class UpushPlugin {
     return result;
   }
 
-  /**
-   * 注册id
-   */
+
   Future<String> getRegistrationId() async {
     final String result =
     await _channel.invokeMethod("getRegistrationId");
@@ -152,24 +141,22 @@ class UpushPlugin {
 
 
 
-  Future _handler(MethodCall call) {
+  Future<Null> _handler(MethodCall call) {
     String method = call.method;
     Map map = call.arguments;
-    debugPrint("************添加标签 map****${map}");
+
     if (method == "onNotificatiClickHandler") {
       //注册回调
-      onNotificatiClickHandler(call.arguments.cast<String, dynamic>());
+      return onNotificatiClickHandler(call.arguments.cast<String, dynamic>());
     } else if (method == "onReceiveCustomMessage") {
       //用户自定义消息
-      onReceiveCustomMessage(call.arguments.cast<String, dynamic>());
+      return onReceiveCustomMessage(call.arguments.cast<String, dynamic>());
     } else if (method == "onReceiveNotification") {
       //正常推送消息
-      onReceiveNotification(call.arguments.cast<String, dynamic>());
+      return onReceiveNotification(call.arguments.cast<String, dynamic>());
     }else if(method=="onReceiveOffLineNotification"){
       //离线通知的点击
-      debugPrint("**********enter **onOffLineMsgClickHandler ****");
-
-      onReceiveOffLineNotification(call.arguments.cast<String, dynamic>());
+      return  onReceiveOffLineNotification(call.arguments.cast<String, dynamic>());
     }
     else {
       throw new UnsupportedError("Unrecognized Event");

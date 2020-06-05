@@ -1,7 +1,7 @@
 name: upush
-description: 一个使用umeng push（友盟推送flutter版）的flutter插件。
-version: 0.0.5
-homepage: https://github.com/laose307
+description: Push Utils Library. Upload Plugin for Flutter Umeng (Android & iOS).
+version: 0.1.1
+homepage: https://github.com/laose307/upush
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
