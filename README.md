@@ -66,7 +66,7 @@ public class MyApplication extends UPushApplication {
 
 }
 ```
-MyApplication 如下图
+MyApplication.java 如下图：
 ![avatar](Image/myapplication.png)
 
 
@@ -84,7 +84,7 @@ MyApplication 如下图
 ```
 
 
- AndroidManifest 如下图
+ AndroidManifest.xml 如下图：
 ![avatar](Image/androidmanifest.png)
 
 
