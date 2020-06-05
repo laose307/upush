@@ -66,6 +66,10 @@ public class MyApplication extends UPushApplication {
 
 }
 ```
+![avatar](Image/myapplication.png)
+
+
+
 然后在AndroidManifest.xml中配置该MyApplication，例如：
 
 ```
@@ -76,6 +80,9 @@ public class MyApplication extends UPushApplication {
        >
 </manifest>
 ```
+![avatar](Image/androidmanifest.png)
+
+
 ## 注意事项 
 
 ```
