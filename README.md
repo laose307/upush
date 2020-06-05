@@ -117,11 +117,12 @@ vivo Push通道
 
 
 ## iOS: 
-### [去苹果官网申请各种证书](https://developer.apple.com/)
+### [去苹果官网申请各种证书](https://developer.apple.com/),下面是简单的操作步骤
 ```
-1.申请项目的ID：Account-->Certificates, Identifiers & Profiles-->Identifiers
-2.申请项目的开发证书:Account-->Certificates, Identifiers & Profiles-->Certificates-->download
-3.申请项目的描述文件：Account-->Certificates, Identifiers & Profiles-->Profiles-->download
+1.申请项目的ID：Account-->Certificates, Identifiers & Profiles-->Identifiers-->Identifiers+-->APP IDs-->Bundle ID、打勾Push Notifications-->Continue-->Register
+2.申请项目的开发证书:Account-->Certificates, Identifiers & Profiles-->Certificates-->Certificates+-->Software:iOS App Development  Services:Apple Push Notification service SSL (Sandbox)
+-->选择申请项目的APP ID-->Continue-->download-->双击证书
+3.申请项目的描述文件：Account-->Certificates, Identifiers & Profiles-->Profiles-->Profiles+-->Development:iOS App Development-->选择申请项目的APP ID-->download-->双击证书
 4.在项目添加支持推送功能：TAGETS-->项目-->Capability-->Push Notifications
 ```
 ## 注意事项 

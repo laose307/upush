@@ -1,6 +1,6 @@
 name: upush
 description: 一个使用umeng push（友盟推送flutter版）的flutter插件。
-version: 0.0.4
+version: 0.0.5
 homepage: https://github.com/laose307
 
 environment:
